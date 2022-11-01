@@ -1,6 +1,6 @@
 const express = require("express");
-const { initialize } = require('express-openapi');
-const swaggerUi = require('swagger-ui-express');
+const { initialize } = require("express-openapi");
+const swaggerUi = require("swagger-ui-express");
 
 const { darkspark } = require("darkspark-expressjs-plug");
 
@@ -29,4 +29,4 @@ initialize({
     paths: "./api/paths",
 });
 
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup("./api/api-doc.yml"));
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup("./api/api-doc.yml"));

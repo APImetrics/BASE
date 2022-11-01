@@ -1,10 +1,4 @@
-import {
-    api,
-    body,
-    endpoint,
-    request,
-    response,
-} from "@airtasker/spot";
+import { api, body, endpoint, request, response } from "@airtasker/spot";
 
 @api({ name: "my-api", version: "1.0.0" })
 class Api {}
@@ -13,7 +7,6 @@ class Api {}
     method: "POST",
     path: "/users",
 })
-
 class RegisterUser {
     @request
     request(@body body: RegisterUserRequest) {}
@@ -46,8 +39,7 @@ interface Address {
     country: string;
 }
 
-interface RegisterUserRequest extends Person {
-}
+interface RegisterUserRequest extends Person {}
 
 interface RegisterUserResponse {
     meta: MetaData;
@@ -55,4 +47,4 @@ interface RegisterUserResponse {
 }
 
 // Never used but supresses unused class messages
-() => [Api, RegisterUser, body]
+() => [Api, RegisterUser, body];

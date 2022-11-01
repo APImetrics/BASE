@@ -1,4 +1,4 @@
-swagger: '2.0'
+swagger: "2.0"
 info:
   title: my-api
   version: 1.0.0
@@ -15,12 +15,12 @@ paths:
           name: Body
           required: true
           schema:
-            $ref: '#/definitions/RegisterUserRequest'
+            $ref: "#/definitions/RegisterUserRequest"
       responses:
-        '201':
+        "201":
           description: 201 response
           schema:
-            $ref: '#/definitions/RegisterUserResponse'
+            $ref: "#/definitions/RegisterUserResponse"
 definitions:
   Address:
     type: object
@@ -57,7 +57,7 @@ definitions:
       dob:
         type: string
       address:
-        $ref: '#/definitions/Address'
+        $ref: "#/definitions/Address"
       username:
         type: string
       email:
@@ -87,7 +87,7 @@ definitions:
       dob:
         type: string
       address:
-        $ref: '#/definitions/Address'
+        $ref: "#/definitions/Address"
       username:
         type: string
       email:
@@ -102,9 +102,9 @@ definitions:
     type: object
     properties:
       meta:
-        $ref: '#/definitions/MetaData'
+        $ref: "#/definitions/MetaData"
       user:
-        $ref: '#/definitions/Person'
+        $ref: "#/definitions/Person"
     required:
       - meta
       - user
