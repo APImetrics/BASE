@@ -1,5 +1,9 @@
 const express = require("express");
+const { initialize } = require('express-openapi');
+const swaggerUi = require('swagger-ui-express');
+
 const { darkspark } = require("darkspark-expressjs-plug");
+
 const app = express();
 const port = 3000;
 
@@ -18,3 +22,11 @@ app.get('/', (req, res) => {
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`);
 });
+
+initialize({
+    app,
+    apiDoc: "./api/api-doc.yml",
+    paths: "./api/paths",
+});
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup("./api/api-doc.yml"));

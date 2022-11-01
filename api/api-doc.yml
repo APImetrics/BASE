@@ -1,0 +1,110 @@
+swagger: '2.0'
+info:
+  title: my-api
+  version: 1.0.0
+consumes:
+  - application/json
+produces:
+  - application/json
+paths:
+  /users:
+    post:
+      operationId: RegisterUser
+      parameters:
+        - in: body
+          name: Body
+          required: true
+          schema:
+            $ref: '#/definitions/RegisterUserRequest'
+      responses:
+        '201':
+          description: 201 response
+          schema:
+            $ref: '#/definitions/RegisterUserResponse'
+definitions:
+  Address:
+    type: object
+    properties:
+      name:
+        type: string
+      line1:
+        type: string
+      line2:
+        type: string
+      city:
+        type: string
+      postcode:
+        type: string
+      region:
+        type: string
+      country:
+        type: string
+    required:
+      - name
+      - line1
+      - line2
+      - city
+      - postcode
+      - region
+      - country
+  RegisterUserRequest:
+    type: object
+    properties:
+      firstname:
+        type: string
+      lastname:
+        type: string
+      dob:
+        type: string
+      address:
+        $ref: '#/definitions/Address'
+      username:
+        type: string
+      email:
+        type: string
+    required:
+      - firstname
+      - lastname
+      - dob
+      - username
+      - email
+  MetaData:
+    type: object
+    properties:
+      result:
+        type: string
+      error:
+        type: string
+    required:
+      - result
+  Person:
+    type: object
+    properties:
+      firstname:
+        type: string
+      lastname:
+        type: string
+      dob:
+        type: string
+      address:
+        $ref: '#/definitions/Address'
+      username:
+        type: string
+      email:
+        type: string
+    required:
+      - firstname
+      - lastname
+      - dob
+      - username
+      - email
+  RegisterUserResponse:
+    type: object
+    properties:
+      meta:
+        $ref: '#/definitions/MetaData'
+      user:
+        $ref: '#/definitions/Person'
+    required:
+      - meta
+      - user
