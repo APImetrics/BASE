@@ -55,4 +55,4 @@ interface RegisterUserResponse {
 }
 
 // Never used but supresses unused class messages
-export {Api, RegisterUser, body}
+() => [Api, RegisterUser, body]
