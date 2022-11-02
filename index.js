@@ -9,11 +9,11 @@ if (!API_KEY) {
     process.exit(1);
 }
 
+darkspark(app, API_KEY);
+
 app.get('/', (req, res) => {
     res.send('Hello World!')
 });
-
-darkspark(app, API_KEY);
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
