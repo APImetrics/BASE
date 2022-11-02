@@ -42,7 +42,8 @@ interface Person {
 }
 
 interface User extends Person {
-    userId: string
+    userId: string,
+    password: string
 }
 
 interface Address {
