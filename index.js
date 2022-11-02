@@ -1,7 +1,7 @@
-const express = require('express')
-const { darkspark } = require('darkspark-expressjs-plug');
-const app = express()
-const port = 3000
+const express = require("express");
+const { darkspark } = require("darkspark-expressjs-plug");
+const app = express();
+const port = 3000;
 
 const API_KEY = process.env.DARKSPARK_API_KEY;
 if (!API_KEY) {
@@ -16,5 +16,5 @@ app.get('/', (req, res) => {
 });
 
 app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`)
+    console.log(`Example app listening on port ${port}`);
 });
