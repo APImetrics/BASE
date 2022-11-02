@@ -4,6 +4,18 @@ import { api, body, endpoint, request, response } from "@airtasker/spot";
 class Api {}
 
 @endpoint({
+    method: "GET",
+    path: "/users",
+})
+class Users {
+    @request
+    request() {}
+
+    @response({ status: 200 })
+    successfulResponse(@body body: UsersResponse) {}
+}
+
+@endpoint({
     method: "POST",
     path: "/users",
 })
@@ -21,12 +33,16 @@ interface MetaData {
 }
 
 interface Person {
-    firstname: string;
+    firstName: string;
     lastname: string;
     dob: string;
+    gender?: string;
     address?: Address;
-    username: string;
     email: string;
+}
+
+interface User extends Person {
+    userId: string
 }
 
 interface Address {
@@ -39,12 +55,17 @@ interface Address {
     country: string;
 }
 
+interface UsersResponse {
+    meta: MetaData;
+    user: User[];
+}
+
 interface RegisterUserRequest extends Person {}
 
 interface RegisterUserResponse {
     meta: MetaData;
-    user: Person;
+    user: User;
 }
 
-// Never used but supresses unused class messages
-() => [Api, RegisterUser, body];
+// Never used but suppresses unused class messages
+export {Api, Users, RegisterUser, body}

@@ -1,4 +1,4 @@
-swagger: "2.0"
+swagger: '2.0'
 info:
   title: my-api
   version: 1.0.0
@@ -8,6 +8,14 @@ produces:
   - application/json
 paths:
   /users:
+    get:
+      operationId: Users
+      parameters: []
+      responses:
+        '200':
+          description: 200 response
+          schema:
+            $ref: '#/definitions/UsersResponse'
     post:
       operationId: RegisterUser
       parameters:
@@ -15,13 +23,22 @@ paths:
           name: Body
           required: true
           schema:
-            $ref: "#/definitions/RegisterUserRequest"
+            $ref: '#/definitions/RegisterUserRequest'
       responses:
-        "201":
+        '201':
           description: 201 response
           schema:
-            $ref: "#/definitions/RegisterUserResponse"
+            $ref: '#/definitions/RegisterUserResponse'
 definitions:
+  MetaData:
+    type: object
+    properties:
+      result:
+        type: string
+      error:
+        type: string
+    required:
+      - result
   Address:
     type: object
     properties:
@@ -47,64 +64,68 @@ definitions:
       - postcode
       - region
       - country
+  User:
+    type: object
+    properties:
+      userId:
+        type: string
+      firstName:
+        type: string
+      lastname:
+        type: string
+      dob:
+        type: string
+      gender:
+        type: string
+      address:
+        $ref: '#/definitions/Address'
+      email:
+        type: string
+    required:
+      - userId
+      - firstName
+      - lastname
+      - dob
+      - email
+  UsersResponse:
+    type: object
+    properties:
+      meta:
+        $ref: '#/definitions/MetaData'
+      user:
+        type: array
+        items:
+          $ref: '#/definitions/User'
+    required:
+      - meta
+      - user
   RegisterUserRequest:
     type: object
     properties:
-      firstname:
+      firstName:
         type: string
       lastname:
         type: string
       dob:
         type: string
-      address:
-        $ref: "#/definitions/Address"
-      username:
+      gender:
         type: string
+      address:
+        $ref: '#/definitions/Address'
       email:
         type: string
     required:
-      - firstname
+      - firstName
       - lastname
       - dob
-      - username
-      - email
-  MetaData:
-    type: object
-    properties:
-      result:
-        type: string
-      error:
-        type: string
-    required:
-      - result
-  Person:
-    type: object
-    properties:
-      firstname:
-        type: string
-      lastname:
-        type: string
-      dob:
-        type: string
-      address:
-        $ref: "#/definitions/Address"
-      username:
-        type: string
-      email:
-        type: string
-    required:
-      - firstname
-      - lastname
-      - dob
-      - username
       - email
   RegisterUserResponse:
     type: object
     properties:
       meta:
-        $ref: "#/definitions/MetaData"
+        $ref: '#/definitions/MetaData'
       user:
-        $ref: "#/definitions/Person"
+        $ref: '#/definitions/User'
     required:
       - meta
       - user
