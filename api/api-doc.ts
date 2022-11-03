@@ -30,6 +30,7 @@ class RegisterUser {
 interface MetaData {
     result: string;
     error?: string;
+    txReport?: any;
 }
 
 interface Person {

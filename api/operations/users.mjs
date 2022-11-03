@@ -6,6 +6,13 @@ export function Users(req, res) {
 
 export function RegisterUser(req, res) {
     const {usersService} = this.dependencies;
-    console.log("req", req);
-    res.status(201).json(usersService.registerUser(req.body));
+    try {
+        const user = usersService.registerUser(req.body)
+        const meta = {result: 'success', tx: usersService.lastTx.tx_data};
+        res.status(201).json({meta, user});
+    } catch (e) {
+        const meta = {result: 'error', error: e};
+        console.error(e)
+        res.status(500).json({meta});
+    }
 }
