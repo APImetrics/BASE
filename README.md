@@ -5,7 +5,7 @@ This repository illustrates using Darkspark with Express on nodejs.
 ## How to Use
 
 1. Create an account on [Darkspark](https://darkspark.io)
-2. Skip the onboarding dialog and click "Take me to API keys". Or just go directly to [API Keys](https://darkspark.io/account/apikeys).
+2. Skip the onboarding dialog and navigate to Account / [API Keys](https://darkspark.io/account/apikeys).
 3. Click "Create Adaptor API Key Now"
    1. Enter the name "darkspark-example-expressjs'
    2. Select Node.js (express.js) as the type
