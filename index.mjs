@@ -9,6 +9,7 @@ import bodyParser from 'body-parser';
 const apiDocPath = "./api/api-doc.yml";
 const apiDoc = YAML.load(apiDocPath)
 
+import basicAuth from 'express-basic-auth'
 import darksparkPlug from "darkspark-expressjs-plug";
 import {Users, RegisterUser, GetUser} from "./api/operations/users.mjs";
 const { darkspark } = darksparkPlug;
@@ -33,6 +34,11 @@ app.listen(port, () => {
     console.log(`Example app listening on port http://localhost:${port}`);
 });
 
+// console.log(apiDoc['paths']['/users']['post']);
+app.use("/api-doc", swaggerUi.serve, swaggerUi.setup(apiDoc));
+
+app.use(basicAuth( { authorizer: myAuthorizer, challenge: true} ))
+
 initialize({
     app,
     apiDoc,
@@ -50,5 +56,13 @@ initialize({
     }
 });
 
-// console.log(apiDoc['paths']['/users']['post']);
-app.use("/api-doc", swaggerUi.serve, swaggerUi.setup(apiDoc));
+function myAuthorizer(email, password) {
+    const user = usersService.getUser(email, ":user/email")
+    if (!user) {
+        return false;
+    }
+
+    return basicAuth.safeCompare(password, user.password);
+}
+
+console.log("Admin User:", usersService.registerUser({"email": "admin@example.darkspark.io"}));

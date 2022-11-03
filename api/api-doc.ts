@@ -1,7 +1,9 @@
-import {api, body, endpoint, pathParams, request, response, String} from "@airtasker/spot";
+import {api, body, endpoint, pathParams, request, response, securityHeader, String} from "@airtasker/spot";
 
-@api({name: "my-api", version: "1.0.0"})
+@api({name: "DarkSampleAPI", version: "1.0.0"})
 class Api {
+    @securityHeader
+    "Authorization": String;
 }
 
 @endpoint({

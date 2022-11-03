@@ -170,3 +170,10 @@ definitions:
     required:
       - meta
       - user
+securityDefinitions:
+  SecurityHeader:
+    type: apiKey
+    in: header
+    name: Authorization
+security:
+  - SecurityHeader: []

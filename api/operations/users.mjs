@@ -1,6 +1,7 @@
 export function Users(req, res) {
+    const {usersService} = this.dependencies;
     const meta =  {result: "success"};
-    const users = [];
+    const users = usersService.find();
     res.status(200).json({meta, users});
 }
 

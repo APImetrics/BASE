@@ -27,10 +27,14 @@ const usersService = {
         usersService.lastTx = ds.transact(conn, [entity]);
         return objectify(entity);
     },
-    getUser(id){
+    getUser(id, key = ':user/userId'){
         const db = ds.db(conn);
-        const userEntity = ds.pull(db, "[*]", [":user/userId", id])
+        const userEntity = ds.pull(db, "[*]", [key, id])
         return objectify(userEntity);
+    },
+    find() {
+        const db = ds.db(conn);
+        return ds.q('[:find [(pull ?id [*]) ...] :where [?id ":user/userId" ?uid]]', db);
     }
 };
 
