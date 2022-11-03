@@ -10,7 +10,7 @@ const apiDocPath = "./api/api-doc.yml";
 const apiDoc = YAML.load(apiDocPath)
 
 import darksparkPlug from "darkspark-expressjs-plug";
-import {Users, RegisterUser} from "./api/operations/users.mjs";
+import {Users, RegisterUser, GetUser} from "./api/operations/users.mjs";
 const { darkspark } = darksparkPlug;
 const app = express();
 const port = 3000;
@@ -41,7 +41,8 @@ initialize({
     },
     operations: {
         Users,
-        RegisterUser
+        RegisterUser,
+        GetUser
     },
     consumesMiddleware: {
         'application/json': bodyParser.json(),

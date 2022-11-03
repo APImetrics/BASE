@@ -7,6 +7,24 @@ consumes:
 produces:
   - application/json
 paths:
+  /users/{id}:
+    get:
+      operationId: GetUser
+      parameters:
+        - name: id
+          in: path
+          description: Unique user identifier
+          required: true
+          type: string
+      responses:
+        '200':
+          description: 200 response
+          schema:
+            $ref: '#/definitions/UserResponse'
+        '404':
+          description: 404 response
+          schema:
+            $ref: '#/definitions/ApiErrorResponse'
   /users:
     get:
       operationId: Users
@@ -69,6 +87,8 @@ definitions:
     properties:
       userId:
         type: string
+      password:
+        type: string
       firstName:
         type: string
       lastname:
@@ -83,22 +103,43 @@ definitions:
         type: string
     required:
       - userId
+      - password
       - firstName
       - lastname
       - dob
       - email
-  UsersResponse:
+  UserResponse:
     type: object
     properties:
       meta:
         $ref: '#/definitions/MetaData'
       user:
+        $ref: '#/definitions/User'
+    required:
+      - meta
+      - user
+  ApiErrorResponse:
+    type: object
+    properties:
+      meta:
+        $ref: '#/definitions/MetaData'
+      message:
+        type: string
+    required:
+      - meta
+      - message
+  UsersResponse:
+    type: object
+    properties:
+      meta:
+        $ref: '#/definitions/MetaData'
+      users:
         type: array
         items:
           $ref: '#/definitions/User'
     required:
       - meta
-      - user
+      - users
   RegisterUserRequest:
     type: object
     properties:

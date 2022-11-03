@@ -26,6 +26,11 @@ const usersService = {
         );
         usersService.lastTx = ds.transact(conn, [entity]);
         return objectify(entity);
+    },
+    getUser(id){
+        const db = ds.db(conn);
+        const userEntity = ds.pull(db, "[*]", [":user/userId", id])
+        return objectify(userEntity);
     }
 };
 
@@ -61,7 +66,6 @@ function name(keyword) {
         return keyword;
     }
     const m = /^:(([^/]+)|[^/]+[/]([^/]+))$/.exec(keyword);
-    console.log(m);
     return _.last(m);
 }
 
