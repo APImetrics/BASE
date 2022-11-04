@@ -12,7 +12,8 @@ This repository illustrates using Darkspark with Express on nodejs.
    3. Click Create New API Key
 4. Copy the resulting API key string to the clipboard
 5. Set the environment variable `DARKSPARK_API_KEY` to the copied value
-6. Run `npm start`
+6. Run `npm install`
+7. Run `npm start`
 
 The final two steps can be done in one command via:
 
