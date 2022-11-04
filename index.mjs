@@ -49,5 +49,4 @@ initialize({
     }
 });
 
-// console.log(apiDoc['paths']['/users']['post']);
 app.use("/api-doc", swaggerUi.serve, swaggerUi.setup(apiDoc));
