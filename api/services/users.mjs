@@ -73,8 +73,7 @@ function name(keyword) {
     if (keyword[0] !== ":") {
         return keyword;
     }
-    const m = /^:(([^/]+)|[^/]+[/]([^/]+))$/.exec(keyword);
-    return _.last(m);
+    return keyword.slice(1).split("/").at(-1);
 }
 
 function objectify(obj) {
