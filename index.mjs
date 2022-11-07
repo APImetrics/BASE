@@ -13,6 +13,7 @@ import basicAuth from "express-basic-auth";
 import darksparkPlug from "darkspark-expressjs-plug";
 import { Users, RegisterUser, GetUser } from "./api/operations/users.mjs";
 const { darkspark } = darksparkPlug;
+
 const app = express();
 const port = 3000;
 
@@ -21,7 +22,6 @@ const API_KEY = process.env.DARKSPARK_API_KEY;
 if (!API_KEY) {
     console.error("Please set DARKSPARK_API_KEY environment variable");
     console.error("Darkspark Disabled!");
-    // process.exit(1);
 } else {
     darkspark(app, API_KEY);
 }
@@ -69,3 +69,4 @@ console.log(
     "Admin User:",
     usersService.registerUser({ email: "admin@example.darkspark.io" })
 );
+app.use("/api-doc", swaggerUi.serve, swaggerUi.setup(apiDoc));
