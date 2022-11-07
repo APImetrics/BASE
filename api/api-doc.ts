@@ -75,13 +75,8 @@ interface Person {
 }
 
 interface User extends Person {
-<<<<<<< HEAD
     userId: String;
     password: String;
-=======
-    userId: string;
-    password: string;
->>>>>>> main
 }
 
 interface Address {
@@ -117,8 +112,4 @@ interface ApiErrorResponse {
 }
 
 // Never used but suppresses unused class messages
-<<<<<<< HEAD
 export { Api, GetUser, Users, RegisterUser, body, pathParams };
-=======
-export { Api, Users, RegisterUser, body };
->>>>>>> main
