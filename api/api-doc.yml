@@ -1,4 +1,4 @@
-swagger: '2.0'
+swagger: "2.0"
 info:
   title: my-api
   version: 1.0.0
@@ -17,23 +17,23 @@ paths:
           required: true
           type: string
       responses:
-        '200':
+        "200":
           description: 200 response
           schema:
-            $ref: '#/definitions/UserResponse'
-        '404':
+            $ref: "#/definitions/UserResponse"
+        "404":
           description: 404 response
           schema:
-            $ref: '#/definitions/ApiErrorResponse'
+            $ref: "#/definitions/ApiErrorResponse"
   /users:
     get:
       operationId: Users
       parameters: []
       responses:
-        '200':
+        "200":
           description: 200 response
           schema:
-            $ref: '#/definitions/UsersResponse'
+            $ref: "#/definitions/UsersResponse"
     post:
       operationId: RegisterUser
       parameters:
@@ -41,12 +41,12 @@ paths:
           name: Body
           required: true
           schema:
-            $ref: '#/definitions/RegisterUserRequest'
+            $ref: "#/definitions/RegisterUserRequest"
       responses:
-        '201':
+        "201":
           description: 201 response
           schema:
-            $ref: '#/definitions/RegisterUserResponse'
+            $ref: "#/definitions/RegisterUserResponse"
 definitions:
   MetaData:
     type: object
@@ -98,7 +98,7 @@ definitions:
       gender:
         type: string
       address:
-        $ref: '#/definitions/Address'
+        $ref: "#/definitions/Address"
       email:
         type: string
     required:
@@ -112,9 +112,9 @@ definitions:
     type: object
     properties:
       meta:
-        $ref: '#/definitions/MetaData'
+        $ref: "#/definitions/MetaData"
       user:
-        $ref: '#/definitions/User'
+        $ref: "#/definitions/User"
     required:
       - meta
       - user
@@ -122,7 +122,7 @@ definitions:
     type: object
     properties:
       meta:
-        $ref: '#/definitions/MetaData'
+        $ref: "#/definitions/MetaData"
       message:
         type: string
     required:
@@ -132,11 +132,11 @@ definitions:
     type: object
     properties:
       meta:
-        $ref: '#/definitions/MetaData'
+        $ref: "#/definitions/MetaData"
       users:
         type: array
         items:
-          $ref: '#/definitions/User'
+          $ref: "#/definitions/User"
     required:
       - meta
       - users
@@ -152,7 +152,7 @@ definitions:
       gender:
         type: string
       address:
-        $ref: '#/definitions/Address'
+        $ref: "#/definitions/Address"
       email:
         type: string
     required:
@@ -164,9 +164,9 @@ definitions:
     type: object
     properties:
       meta:
-        $ref: '#/definitions/MetaData'
+        $ref: "#/definitions/MetaData"
       user:
-        $ref: '#/definitions/User'
+        $ref: "#/definitions/User"
     required:
       - meta
       - user

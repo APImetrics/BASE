@@ -1,6 +1,15 @@
-import {api, body, endpoint, pathParams, request, response, securityHeader, String} from "@airtasker/spot";
+import {
+    api,
+    body,
+    endpoint,
+    pathParams,
+    request,
+    response,
+    securityHeader,
+    String,
+} from "@airtasker/spot";
 
-@api({name: "DarkSampleAPI", version: "1.0.0"})
+@api({ name: "DarkSampleAPI", version: "1.0.0" })
 class Api {
     @securityHeader
     "Authorization": String;
@@ -8,13 +17,13 @@ class Api {
 
 @endpoint({
     method: "GET",
-    path: "/users/:id"
+    path: "/users/:id",
 })
 class GetUser {
     @request
     request(
         @pathParams
-            pathParams: {
+        pathParams: {
             /** Unique user identifier */
             id: String;
         }
@@ -33,12 +42,10 @@ class GetUser {
 })
 class Users {
     @request
-    request() {
-    }
+    request() {}
 
-    @response({status: 200})
-    successfulResponse(@body body: UsersResponse) {
-    }
+    @response({ status: 200 })
+    successfulResponse(@body body: UsersResponse) {}
 }
 
 @endpoint({
@@ -47,12 +54,10 @@ class Users {
 })
 class RegisterUser {
     @request
-    request(@body body: RegisterUserRequest) {
-    }
+    request(@body body: RegisterUserRequest) {}
 
-    @response({status: 201})
-    successfulResponse(@body body: RegisterUserResponse) {
-    }
+    @response({ status: 201 })
+    successfulResponse(@body body: RegisterUserResponse) {}
 }
 
 interface MetaData {
@@ -70,8 +75,8 @@ interface Person {
 }
 
 interface User extends Person {
-    userId: String,
-    password: String
+    userId: String;
+    password: String;
 }
 
 interface Address {
@@ -94,8 +99,7 @@ interface UsersResponse {
     users: User[];
 }
 
-interface RegisterUserRequest extends Person {
-}
+interface RegisterUserRequest extends Person {}
 
 interface RegisterUserResponse {
     meta: MetaData;
@@ -108,4 +112,4 @@ interface ApiErrorResponse {
 }
 
 // Never used but suppresses unused class messages
-export {Api, GetUser, Users, RegisterUser, body, pathParams}
+export { Api, GetUser, Users, RegisterUser, body, pathParams };
