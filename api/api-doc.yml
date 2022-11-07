@@ -1,0 +1,131 @@
+swagger: "2.0"
+info:
+  title: my-api
+  version: 1.0.0
+consumes:
+  - application/json
+produces:
+  - application/json
+paths:
+  /users:
+    get:
+      operationId: Users
+      parameters: []
+      responses:
+        "200":
+          description: 200 response
+          schema:
+            $ref: "#/definitions/UsersResponse"
+    post:
+      operationId: RegisterUser
+      parameters:
+        - in: body
+          name: Body
+          required: true
+          schema:
+            $ref: "#/definitions/RegisterUserRequest"
+      responses:
+        "201":
+          description: 201 response
+          schema:
+            $ref: "#/definitions/RegisterUserResponse"
+definitions:
+  MetaData:
+    type: object
+    properties:
+      result:
+        type: string
+      error:
+        type: string
+    required:
+      - result
+  Address:
+    type: object
+    properties:
+      name:
+        type: string
+      line1:
+        type: string
+      line2:
+        type: string
+      city:
+        type: string
+      postcode:
+        type: string
+      region:
+        type: string
+      country:
+        type: string
+    required:
+      - name
+      - line1
+      - line2
+      - city
+      - postcode
+      - region
+      - country
+  User:
+    type: object
+    properties:
+      userId:
+        type: string
+      firstName:
+        type: string
+      lastname:
+        type: string
+      dob:
+        type: string
+      gender:
+        type: string
+      address:
+        $ref: "#/definitions/Address"
+      email:
+        type: string
+    required:
+      - userId
+      - firstName
+      - lastname
+      - dob
+      - email
+  UsersResponse:
+    type: object
+    properties:
+      meta:
+        $ref: "#/definitions/MetaData"
+      user:
+        type: array
+        items:
+          $ref: "#/definitions/User"
+    required:
+      - meta
+      - user
+  RegisterUserRequest:
+    type: object
+    properties:
+      firstName:
+        type: string
+      lastname:
+        type: string
+      dob:
+        type: string
+      gender:
+        type: string
+      address:
+        $ref: "#/definitions/Address"
+      email:
+        type: string
+    required:
+      - firstName
+      - lastname
+      - dob
+      - email
+  RegisterUserResponse:
+    type: object
+    properties:
+      meta:
+        $ref: "#/definitions/MetaData"
+      user:
+        $ref: "#/definitions/User"
+    required:
+      - meta
+      - user

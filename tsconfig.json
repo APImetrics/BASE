@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "target": "es2021",
+    "module": "CommonJS",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "strict": true,
+    /* Experimental Options */
+    "experimentalDecorators": true /* Enables experimental support for ES7 decorators. */
+  }
+}

@@ -2,9 +2,10 @@
   "name": "darkspark-example-expressjs",
   "version": "1.0.0",
   "description": "Example expressjs application using Darkspark Plug",
-  "main": "index.js",
+  "main": "index.mjs",
   "scripts": {
-    "start": "node index.js",
+    "gen-doc": "spot generate -c api/api-doc.ts -o api -l yaml -g openapi2",
+    "start": "node index.mjs",
     "test": "test"
   },
   "repository": {
@@ -24,6 +25,16 @@
   "homepage": "https://github.com/Contxt-Ltd/darkspark-example-expressjs#readme",
   "dependencies": {
     "darkspark-expressjs-plug": "^1.0.0",
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "express-openapi": "^12.0.2",
+    "swagger-ui-express": "^4.5.0",
+    "yamljs": "^0.3.0"
+  },
+  "devDependencies": {
+    "@airtasker/spot": "^1.9.0",
+    "@types/node": "^18.11.0",
+    "prettier": "^2.7.1",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.8.4"
   }
 }
