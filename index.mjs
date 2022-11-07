@@ -34,7 +34,6 @@ app.listen(port, () => {
     console.log(`Example app listening on port http://localhost:${port}`);
 });
 
-// console.log(apiDoc['paths']['/users']['post']);
 app.use("/api-doc", swaggerUi.serve, swaggerUi.setup(apiDoc));
 
 app.use(basicAuth({ authorizer: myAuthorizer, challenge: true }));
