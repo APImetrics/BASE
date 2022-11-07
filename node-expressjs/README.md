@@ -1,6 +1,4 @@
-# Darkspark Example using Express
-
-This repository illustrates using Darkspark with Express on nodejs.
+# BASE - Node (Express)
 
 ## How to Use
 
