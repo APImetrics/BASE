@@ -1,7 +1,40 @@
-import { api, body, endpoint, request, response } from "@airtasker/spot";
+import {
+    api,
+    body,
+    endpoint,
+    pathParams,
+    request,
+    response,
+    securityHeader,
+    String,
+} from "@airtasker/spot";
 
-@api({ name: "my-api", version: "1.0.0" })
-class Api {}
+@api({ name: "DarkSampleAPI", version: "1.0.0" })
+class Api {
+    @securityHeader
+    "Authorization": String;
+}
+
+@endpoint({
+    method: "GET",
+    path: "/users/:id",
+})
+class GetUser {
+    @request
+    request(
+        @pathParams
+        pathParams: {
+            /** Unique user identifier */
+            id: String;
+        }
+    ) {}
+
+    @response({ status: 200 })
+    successResponse(@body body: UserResponse) {}
+
+    @response({ status: 404 })
+    notfoundResponse(@body body: ApiErrorResponse) {}
+}
 
 @endpoint({
     method: "GET",
@@ -28,37 +61,42 @@ class RegisterUser {
 }
 
 interface MetaData {
-    result: string;
-    error?: string;
+    result: String;
+    error?: String;
 }
 
 interface Person {
-    firstName: string;
-    lastname: string;
-    dob: string;
-    gender?: string;
+    firstName: String;
+    lastname: String;
+    dob: String;
+    gender?: String;
     address?: Address;
-    email: string;
+    email: String;
 }
 
 interface User extends Person {
-    userId: string;
-    password: string;
+    userId: String;
+    password: String;
 }
 
 interface Address {
-    name: string;
-    line1: string;
-    line2: string;
-    city: string;
-    postcode: string;
-    region: string;
-    country: string;
+    name: String;
+    line1: String;
+    line2: String;
+    city: String;
+    postcode: String;
+    region: String;
+    country: String;
+}
+
+interface UserResponse {
+    meta: MetaData;
+    user: User;
 }
 
 interface UsersResponse {
     meta: MetaData;
-    user: User[];
+    users: User[];
 }
 
 interface RegisterUserRequest extends Person {}
@@ -68,5 +106,10 @@ interface RegisterUserResponse {
     user: User;
 }
 
+interface ApiErrorResponse {
+    meta: MetaData;
+    message: String;
+}
+
 // Never used but suppresses unused class messages
-export { Api, Users, RegisterUser, body };
+export { Api, GetUser, Users, RegisterUser, body, pathParams };

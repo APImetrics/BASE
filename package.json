@@ -6,6 +6,7 @@
   "scripts": {
     "gen-doc": "spot generate -c api/api-doc.ts -o api -l yaml -g openapi2",
     "start": "node index.mjs",
+    "watch": "nodemon --inspect",
     "test": "test"
   },
   "repository": {
@@ -25,14 +26,19 @@
   "homepage": "https://github.com/Contxt-Ltd/darkspark-example-expressjs#readme",
   "dependencies": {
     "darkspark-expressjs-plug": "^1.0.0",
+    "datascript": "^1.3.15",
     "express": "^4.18.2",
+    "express-basic-auth": "^1.2.1",
     "express-openapi": "^12.0.2",
+    "lodash": "^4.17.21",
     "swagger-ui-express": "^4.5.0",
+    "uuid": "^9.0.0",
     "yamljs": "^0.3.0"
   },
   "devDependencies": {
     "@airtasker/spot": "^1.9.0",
     "@types/node": "^18.11.0",
+    "nodemon": "^2.0.20",
     "prettier": "^2.7.1",
     "ts-node": "^10.9.1",
     "typescript": "^4.8.4"
