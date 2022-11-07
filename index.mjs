@@ -20,7 +20,6 @@ const API_KEY = process.env.DARKSPARK_API_KEY;
 if (!API_KEY) {
     console.error("Please set DARKSPARK_API_KEY environment variable");
     console.error("Darkspark Disabled!");
-    // process.exit(1);
 } else {
     darkspark(app, API_KEY);
 }
