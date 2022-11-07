@@ -42,8 +42,8 @@ interface Person {
 }
 
 interface User extends Person {
-    userId: string,
-    password: string
+    userId: string;
+    password: string;
 }
 
 interface Address {
@@ -69,4 +69,4 @@ interface RegisterUserResponse {
 }
 
 // Never used but suppresses unused class messages
-export {Api, Users, RegisterUser, body}
+export { Api, Users, RegisterUser, body };
