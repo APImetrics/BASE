@@ -34,10 +34,11 @@ const usersService = {
     },
     find() {
         const db = ds.db(conn);
-        return ds.q(
+        const userEntity = ds.q(
             '[:find [(pull ?id [*]) ...] :where [?id ":user/userId" ?uid]]',
             db
         );
+        return objectify(userEntity);
     },
 };
 
@@ -54,16 +55,25 @@ function generatePassword() {
     return retVal;
 }
 
-function keywordize(prefix, obj) {
+function transformObjectGraph(obj, transform) {
+    if (_.isArray(obj)) {
+        return obj.map((item) => transformObjectGraph(item, transform));
+    }
     if (!_.isObject(obj)) {
         return obj;
     }
     return _(obj)
-        .map((v, k) => [`:${prefix}/${k}`, keywordize(`${prefix}.${k}`, v)])
+        .map(transform)
         .reduce((m, [k, v]) => {
             m[k] = v;
             return m;
         }, {});
+}
+
+function keywordize(prefix, obj) {
+    return transformObjectGraph(obj,
+        (v, k) => [`:${prefix}/${k}`, keywordize(`${prefix}.${k}`, v)]
+    );
 }
 
 function name(keyword) {
@@ -77,13 +87,7 @@ function name(keyword) {
 }
 
 function objectify(obj) {
-    if (!_.isObject(obj)) {
-        return obj;
-    }
-    return _(obj)
-        .map((v, k) => [name(k), objectify(v)])
-        .reduce((m, [k, v]) => {
-            m[k] = v;
-            return m;
-        }, {});
+    return transformObjectGraph(obj,
+        (v, k) => [name(k), objectify(v)]
+    );
 }
