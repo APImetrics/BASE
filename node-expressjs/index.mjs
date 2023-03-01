@@ -12,7 +12,7 @@ const apiDoc = YAML.load(apiDocPath);
 import basicAuth from "express-basic-auth";
 import darksparkPlug from "darkspark-expressjs-plug";
 import { Users, RegisterUser, GetUser } from "./api/operations/users.mjs";
-const { darkspark } = darksparkPlug;
+const { darkspark, darksparkVerify } = darksparkPlug;
 
 const app = express();
 const port = 3000;
@@ -50,7 +50,9 @@ initialize({
         GetUser,
     },
     consumesMiddleware: {
-        "application/json": bodyParser.json(),
+        "application/json": bodyParser.json({
+            verify: darksparkVerify
+        }),
         "text/text": bodyParser.text(),
     },
 });
